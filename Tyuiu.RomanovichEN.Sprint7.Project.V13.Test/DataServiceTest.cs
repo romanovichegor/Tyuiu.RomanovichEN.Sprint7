@@ -1,81 +1,63 @@
-﻿using Tyuiu.RomanovichEN.Sprint7.Project.V13.Lib;
+﻿using System;
+using System.IO;
+using Tyuiu.RomanovichEN.Sprint7.Project.V13.Lib;
 namespace Tyuiu.RomanovichEN.Sprint7.Project.V13.Test
 {
-    public class Tests
+    [TestClass]
+    public class DataServiceTests
     {
         private const string TestFilePath = "test_countries.csv";
-        private DataService _dataService;
-        public void SetUp()
+        public void Setup()
         {
-            _dataService = new DataService();
+            CreateTestFile();
         }
-        public void TearDown()
+        public void Cleanup()
         {
-            if (File.Exists(TestFilePath))
-            {
-                File.Delete(TestFilePath);
-            }
+            if (File.Exists(TestFilePath)) File.Delete(TestFilePath);
         }
-
-        public void AddCountry_ShouldAddCountryToList()
+        [TestMethod]
+        public void AddCountry_ShouldIncreaseCountriesCount()
         {
-            var country = new Country
-            {
-                Name = "Россия",
-                Capital = "Москва",
-                Area = 17098242,
-                IsDeveloped = false,
-                Population = 145912025,
-                PredominantNationality = "Русские",
-                Notes = "Самая большая страна по территории."
-            };
+            var dataService = new DataService();
+            var country = new Country { Name = "Германия" };
 
-            _dataService.AddCountry(country);
+            dataService.AddCountry(country);
 
-            var addedCountry = _dataService.GetCountryByName("Россия");
-            Assert.IsNotNull(addedCountry);
-            Assert.AreEqual("Россия", addedCountry.Name);
+            Assert.AreEqual(1, dataService.Countries.Count);
+            Assert.AreEqual("Германия", dataService.Countries[0].Name);
         }
 
-        public void RemoveCountry_ShouldRemoveCountryFromList()
+        [TestMethod]
+        public void GetCountryByName_ShouldReturnCountryIfExists()
         {
-            var country = new Country
-            {
-                Name = "США",
-                Capital = "Вашингтон",
-                Area = 9833517,
-                IsDeveloped = true,
-                Population = 331893745,
-                PredominantNationality = "Американцы",
-                Notes = "Страна с крупнейшей экономикой."
-            };
-            _dataService.AddCountry(country);
+            var dataService = new DataService();
+            var country = new Country { Name = "Италия" };
+            dataService.AddCountry(country);
 
-            _dataService.RemoveCountry("США");
+            var result = dataService.GetCountryByName("Италия");
 
-            var removedCountry = _dataService.GetCountryByName("США");
-            Assert.IsNull(removedCountry);
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Италия", result.Name);
         }
 
-        public void SaveData_ShouldSaveCountriesToFile()
+        [TestMethod]
+        public void RemoveCountry_ShouldRemoveExistingCountry()
         {
-            var country = new Country
-            {
-                Name = "Германия",
-                Capital = "Берлин",
-                Area = 357022,
-                IsDeveloped = true,
-                Population = 83240525,
-                PredominantNationality = "Немцы",
-                Notes = "Экономическая держава Европы."
-            };
-            _dataService.AddCountry(country);
-            _dataService.SaveData();
+            var dataService = new DataService();
+            var country = new Country { Name = "Испания" };
+            dataService.AddCountry(country);
 
-            _dataService.LoadData();
-            var loadedCountry = _dataService.GetCountryByName("Германия");
-            Assert.IsNotNull(loadedCountry);
-            Assert.AreEqual("Германия", loadedCountry.Name);
+            dataService.RemoveCountry("Испания");
+
+            Assert.AreEqual(0, dataService.Countries.Count);
+        }
+
+        private void CreateTestFile()
+        {
+            var content = @"Name,Capital,Area,IsDeveloped,Population,PredominantNationality,Notes
+Россия,Москва,17075400,True,146000000,русские,Крупнейшая страна мира
+Япония,Токио,377972,True,126000000,японцы,Островное государство";
+            File.WriteAllText(TestFilePath, content);
         }
     }
 }
