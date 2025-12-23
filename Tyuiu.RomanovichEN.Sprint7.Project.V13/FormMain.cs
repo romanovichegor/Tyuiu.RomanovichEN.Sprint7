@@ -28,19 +28,26 @@ namespace Tyuiu.RomanovichEN.Sprint7.Project.V13
         }
         private void buttonAdd_REN_Click(object sender, EventArgs e)
         {
-            var country = new Country
+            try
             {
-                Name = textBoxNameInput_REN.Text,
-                Capital = textBoxCapitalInput_REN.Text,
-                Area = Convert.ToDouble(textBoxAreaInput_REN.Text),
-                IsDeveloped = checkBoxIsDeveloped_REN.Checked,
-                Population = Convert.ToInt64(textBoxPopulationInput_REN.Text),
-                PredominantNationality = textBoxNation_REN.Text,
-                Notes = textBoxNotesInput_REN.Text
-            };
-            _dataService.AddCountry(country);
-            _dataService.SaveData();
-            UpdateCountryList();
+                var country = new Country
+                {
+                    Name = textBoxNameInput_REN.Text,
+                    Capital = textBoxCapitalInput_REN.Text,
+                    Area = Convert.ToDouble(textBoxAreaInput_REN.Text),
+                    IsDeveloped = checkBoxIsDeveloped_REN.Checked,
+                    Population = Convert.ToInt64(textBoxPopulationInput_REN.Text),
+                    PredominantNationality = textBoxNation_REN.Text,
+                    Notes = textBoxNotesInput_REN.Text
+                };
+                _dataService.AddCountry(country);
+                _dataService.SaveData();
+                UpdateCountryList();
+            }
+            catch
+            {
+                MessageBox.Show($"Неправильно введены данные!", "Ошибка при добавлении страны!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonSave_REN_Click(object sender, EventArgs e)
