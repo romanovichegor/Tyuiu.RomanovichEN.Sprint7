@@ -45,6 +45,13 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             checkBoxIsDeveloped_REN = new CheckBox();
             dataGridViewCountries_REN = new DataGridView();
+            NameColumn = new DataGridViewTextBoxColumn();
+            CapitalColumn = new DataGridViewTextBoxColumn();
+            AreaColumn = new DataGridViewTextBoxColumn();
+            IsDevelopedColumn = new DataGridViewCheckBoxColumn();
+            PopulationColumn = new DataGridViewTextBoxColumn();
+            NationalityColumn = new DataGridViewTextBoxColumn();
+            NotesColumn = new DataGridViewTextBoxColumn();
             buttonAdd_REN = new Button();
             buttonSave_REN = new Button();
             buttonLoad_REN = new Button();
@@ -60,13 +67,6 @@
             splitterREN = new Splitter();
             panelApp_REN = new Panel();
             groupBoxButtons_REN = new GroupBox();
-            NameColumn = new DataGridViewTextBoxColumn();
-            CapitalColumn = new DataGridViewTextBoxColumn();
-            AreaColumn = new DataGridViewTextBoxColumn();
-            IsDevelopedColumn = new DataGridViewCheckBoxColumn();
-            PopulationColumn = new DataGridViewTextBoxColumn();
-            NationalityColumn = new DataGridViewTextBoxColumn();
-            NotesColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCountries_REN).BeginInit();
             panelDataGrindView_REN.SuspendLayout();
             panelApp_REN.SuspendLayout();
@@ -211,12 +211,59 @@
             // dataGridViewCountries_REN
             // 
             dataGridViewCountries_REN.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewCountries_REN.BackgroundColor = Color.FromArgb(128, 128, 255);
             dataGridViewCountries_REN.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCountries_REN.Columns.AddRange(new DataGridViewColumn[] { NameColumn, CapitalColumn, AreaColumn, IsDevelopedColumn, PopulationColumn, NationalityColumn, NotesColumn });
             dataGridViewCountries_REN.Location = new Point(12, 12);
             dataGridViewCountries_REN.Name = "dataGridViewCountries_REN";
             dataGridViewCountries_REN.Size = new Size(776, 176);
             dataGridViewCountries_REN.TabIndex = 0;
+            // 
+            // NameColumn
+            // 
+            NameColumn.HeaderText = "Название";
+            NameColumn.Name = "NameColumn";
+            NameColumn.ReadOnly = true;
+            // 
+            // CapitalColumn
+            // 
+            CapitalColumn.HeaderText = "Столица";
+            CapitalColumn.Name = "CapitalColumn";
+            CapitalColumn.ReadOnly = true;
+            // 
+            // AreaColumn
+            // 
+            AreaColumn.HeaderText = "Площадь";
+            AreaColumn.Name = "AreaColumn";
+            AreaColumn.ReadOnly = true;
+            // 
+            // IsDevelopedColumn
+            // 
+            IsDevelopedColumn.FalseValue = "Не развита";
+            IsDevelopedColumn.HeaderText = "Развита?";
+            IsDevelopedColumn.Name = "IsDevelopedColumn";
+            IsDevelopedColumn.ReadOnly = true;
+            IsDevelopedColumn.TrueValue = "Развита";
+            // 
+            // PopulationColumn
+            // 
+            PopulationColumn.HeaderText = "Население";
+            PopulationColumn.Name = "PopulationColumn";
+            PopulationColumn.ReadOnly = true;
+            // 
+            // NationalityColumn
+            // 
+            NationalityColumn.HeaderText = "Преобладающая нация";
+            NationalityColumn.Name = "NationalityColumn";
+            NationalityColumn.ReadOnly = true;
+            // 
+            // NotesColumn
+            // 
+            NotesColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            NotesColumn.HeaderText = "Примечания";
+            NotesColumn.Name = "NotesColumn";
+            NotesColumn.ReadOnly = true;
+            NotesColumn.Width = 103;
             // 
             // buttonAdd_REN
             // 
@@ -375,52 +422,6 @@
             groupBoxButtons_REN.Size = new Size(800, 44);
             groupBoxButtons_REN.TabIndex = 28;
             groupBoxButtons_REN.TabStop = false;
-            // 
-            // NameColumn
-            // 
-            NameColumn.HeaderText = "Название";
-            NameColumn.Name = "NameColumn";
-            NameColumn.ReadOnly = true;
-            // 
-            // CapitalColumn
-            // 
-            CapitalColumn.HeaderText = "Столица";
-            CapitalColumn.Name = "CapitalColumn";
-            CapitalColumn.ReadOnly = true;
-            // 
-            // AreaColumn
-            // 
-            AreaColumn.HeaderText = "Площадь";
-            AreaColumn.Name = "AreaColumn";
-            AreaColumn.ReadOnly = true;
-            // 
-            // IsDevelopedColumn
-            // 
-            IsDevelopedColumn.FalseValue = "Не развита";
-            IsDevelopedColumn.HeaderText = "Развита?";
-            IsDevelopedColumn.Name = "IsDevelopedColumn";
-            IsDevelopedColumn.ReadOnly = true;
-            IsDevelopedColumn.TrueValue = "Развита";
-            // 
-            // PopulationColumn
-            // 
-            PopulationColumn.HeaderText = "Население";
-            PopulationColumn.Name = "PopulationColumn";
-            PopulationColumn.ReadOnly = true;
-            // 
-            // NationalityColumn
-            // 
-            NationalityColumn.HeaderText = "Преобладающая нация";
-            NationalityColumn.Name = "NationalityColumn";
-            NationalityColumn.ReadOnly = true;
-            // 
-            // NotesColumn
-            // 
-            NotesColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            NotesColumn.HeaderText = "Примечания";
-            NotesColumn.Name = "NotesColumn";
-            NotesColumn.ReadOnly = true;
-            NotesColumn.Width = 103;
             // 
             // FormMain_REN
             // 
