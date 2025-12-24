@@ -67,6 +67,8 @@
             splitterREN = new Splitter();
             panelApp_REN = new Panel();
             groupBoxButtons_REN = new GroupBox();
+            buttonShowChart_REN = new Button();
+            buttonShowStats_REN = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCountries_REN).BeginInit();
             panelDataGrindView_REN.SuspendLayout();
             panelApp_REN.SuspendLayout();
@@ -282,9 +284,9 @@
             // 
             buttonSave_REN.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonSave_REN.BackColor = Color.FromArgb(192, 255, 192);
-            buttonSave_REN.Location = new Point(87, 415);
+            buttonSave_REN.Location = new Point(87, 9);
             buttonSave_REN.Name = "buttonSave_REN";
-            buttonSave_REN.Size = new Size(75, 23);
+            buttonSave_REN.Size = new Size(83, 23);
             buttonSave_REN.TabIndex = 18;
             buttonSave_REN.Text = "Сохранить";
             toolTip_REN.SetToolTip(buttonSave_REN, "Сохранить файл");
@@ -295,7 +297,7 @@
             // 
             buttonLoad_REN.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonLoad_REN.BackColor = Color.FromArgb(192, 255, 255);
-            buttonLoad_REN.Location = new Point(168, 415);
+            buttonLoad_REN.Location = new Point(176, 9);
             buttonLoad_REN.Name = "buttonLoad_REN";
             buttonLoad_REN.Size = new Size(75, 23);
             buttonLoad_REN.TabIndex = 19;
@@ -308,7 +310,7 @@
             // 
             buttonDelete_REN.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonDelete_REN.BackColor = Color.FromArgb(255, 192, 192);
-            buttonDelete_REN.Location = new Point(249, 415);
+            buttonDelete_REN.Location = new Point(257, 9);
             buttonDelete_REN.Name = "buttonDelete_REN";
             buttonDelete_REN.Size = new Size(75, 23);
             buttonDelete_REN.TabIndex = 20;
@@ -415,13 +417,40 @@
             // 
             // groupBoxButtons_REN
             // 
+            groupBoxButtons_REN.Controls.Add(buttonShowStats_REN);
+            groupBoxButtons_REN.Controls.Add(buttonShowChart_REN);
             groupBoxButtons_REN.Controls.Add(buttonHelp_REN);
+            groupBoxButtons_REN.Controls.Add(buttonDelete_REN);
+            groupBoxButtons_REN.Controls.Add(buttonLoad_REN);
+            groupBoxButtons_REN.Controls.Add(buttonSave_REN);
             groupBoxButtons_REN.Dock = DockStyle.Bottom;
             groupBoxButtons_REN.Location = new Point(0, 406);
             groupBoxButtons_REN.Name = "groupBoxButtons_REN";
             groupBoxButtons_REN.Size = new Size(800, 44);
             groupBoxButtons_REN.TabIndex = 28;
             groupBoxButtons_REN.TabStop = false;
+            // 
+            // buttonShowChart_REN
+            // 
+            buttonShowChart_REN.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonShowChart_REN.Location = new Point(338, 9);
+            buttonShowChart_REN.Name = "buttonShowChart_REN";
+            buttonShowChart_REN.Size = new Size(75, 23);
+            buttonShowChart_REN.TabIndex = 28;
+            buttonShowChart_REN.Text = "График";
+            buttonShowChart_REN.UseVisualStyleBackColor = true;
+            buttonShowChart_REN.Click += buttonShowChart_REN_Click;
+            // 
+            // buttonShowStats_REN
+            // 
+            buttonShowStats_REN.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonShowStats_REN.Location = new Point(419, 9);
+            buttonShowStats_REN.Name = "buttonShowStats_REN";
+            buttonShowStats_REN.Size = new Size(81, 23);
+            buttonShowStats_REN.TabIndex = 29;
+            buttonShowStats_REN.Text = "Статистика";
+            buttonShowStats_REN.UseVisualStyleBackColor = true;
+            buttonShowStats_REN.Click += buttonShowStats_REN_Click;
             // 
             // FormMain_REN
             // 
@@ -432,9 +461,6 @@
             Controls.Add(textBoxSearch_REN);
             Controls.Add(textBoxSearchInput_REN);
             Controls.Add(buttonSearch_REN);
-            Controls.Add(buttonDelete_REN);
-            Controls.Add(buttonLoad_REN);
-            Controls.Add(buttonSave_REN);
             Controls.Add(buttonAdd_REN);
             Controls.Add(dataGridViewCountries_REN);
             Controls.Add(checkBoxIsDeveloped_REN);
@@ -505,5 +531,7 @@
         private DataGridViewTextBoxColumn PopulationColumn;
         private DataGridViewTextBoxColumn NationalityColumn;
         private DataGridViewTextBoxColumn NotesColumn;
+        private Button buttonShowChart_REN;
+        private Button buttonShowStats_REN;
     }
 }

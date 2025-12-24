@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.Xml.Linq;
 using Tyuiu.RomanovichEN.Sprint7.Project.V13.Lib;
+using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.MonthCalendar;
 namespace Tyuiu.RomanovichEN.Sprint7.Project.V13
 {
@@ -126,6 +127,84 @@ namespace Tyuiu.RomanovichEN.Sprint7.Project.V13
         {
             FormAbout_REN fa = new FormAbout_REN();
             fa.ShowDialog();
+        }
+
+        private void buttonShowChart_REN_Click(object sender, EventArgs e)
+        {
+            if (_dataService.Countries.Count == 0)
+            {
+                MessageBox.Show("Нет данных для отображения графика.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var chartForm = new Form();
+            chartForm.Text = "Гистограмма населения стран";
+            chartForm.Size = new System.Drawing.Size(1800, 600);
+            chartForm.StartPosition = FormStartPosition.CenterParent;
+            chartForm.MaximizeBox = false;
+
+            var chart = new Chart();
+            chart.Size = new System.Drawing.Size(1780, 560);
+            chart.Location = new System.Drawing.Point(10, 10);
+
+
+            var chartArea = new ChartArea();
+            chartArea.AxisX.LabelStyle.Angle = -45;
+            chartArea.AxisX.LabelStyle.Interval = 1;
+            chartArea.AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea.AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chart.ChartAreas.Add(chartArea);
+
+            var series = new Series();
+            series.Name = "Население";
+            series.ChartType = SeriesChartType.Column;
+            series.IsValueShownAsLabel = true;
+            series.LabelFormat = "N0";
+
+            foreach (var country in _dataService.Countries)
+            {
+                series.Points.AddXY(country.Name, country.Population);
+            }
+
+            chart.Series.Add(series);
+
+            var legend = new Legend();
+            legend.Name = "Legend1";
+            chart.Legends.Add(legend);
+            chartForm.Controls.Add(chart);
+
+            chartForm.ShowDialog();
+        }
+
+        private void buttonShowStats_REN_Click(object sender, EventArgs e)
+        {
+            if (_dataService.Countries.Count == 0)
+            {
+                MessageBox.Show("Нет данных о странах.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            long sum = 0;
+            long min = long.MaxValue;
+            long max = long.MinValue;
+
+            foreach (var country in _dataService.Countries)
+            {
+                sum += country.Population;
+                if (country.Population < min) min = country.Population;
+                if (country.Population > max) max = country.Population;
+            }
+
+            double avg = (double)sum / _dataService.Countries.Count;
+
+            var statsForm = new FormStats_REN();
+            statsForm.SetStats(
+                sum.ToString("N0"),
+                avg.ToString("N0"),
+                min.ToString("N0"),
+                max.ToString("N0")
+            );
+            statsForm.ShowDialog();
         }
     }
 }
